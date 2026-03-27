@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Smart School — Shahpur Chakar | A Project of The City School</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --red: #C8102E;
+    --red-dark: #9b0d22;
+    --red-light: #f7e0e3;
+    --blue: #003DA5;
+    --blue-dark: #002880;
+    --blue-light: #e8eef9;
+    --gold: #C9A84C;
+    --white: #ffffff;
+    --off-white: #fafaf8;
+    --text: #1c1c2e;
+    --text-muted: #5a5a72;
+    --border: #e8e8ef;
+    --shadow: 0 4px 24px rgba(0,0,0,0.10);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--off-white);
+    overflow-x: hidden;
+  }
+
+  /* ===== SCROLL OFFSET for sticky nav ===== */
+  section, #announcements, #about, #principal, #academics, #faculty, #fees, #dress, #gallery, #contact {
+    scroll-margin-top: 80px;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #f1f1f1; }
+  ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+  /* ===== TOP BAR ===== */
+  .topbar {
+    background: var(--blue);
+    color: white;
+    font-size: 0.78rem;
+    padding: 8px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.02em;
+  }
+  .topbar a { color: rgba(255,255,255,0.85); text-decoration: none; margin-left: 20px; transition: color 0.2s; }
+  .topbar a:hover { color: white; }
+  .topbar a i { margin-right: 6px; }
+  .topbar-ticker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden;
+    max-width: 60%;
+  }
+  .ticker-label {
+    background: var(--red);
+    color: white;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ticker-wrap { overflow: hidden; flex: 1; }
+  .ticker-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker 28s linear infinite;
+    color: rgba(255,255,255,0.9);
+  }
+  @keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    background: white;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.10);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: box-shadow 0.3s;
+  }
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .nav-logo-svg {
+    height: 65px;
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  /* --- LOGO ANIMATIONS (Added for the logo) --- */
+  .logo-box-anim { transform-origin: center; animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+  .logo-at-anim { animation: spinIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; transform-origin: 110px 85px; opacity: 0; }
+  .logo-text-1 { opacity: 0; animation: fadeSlide 0.6s 0.3s forwards; }
+  .logo-text-2 { opacity: 0; animation: fadeSlide 0.6s 0.5s forwards; }
+  .logo-text-3 { opacity: 0; animation: fadeSlide 0.6s 0.7s forwards; }
+  .logo-line-anim { stroke-dasharray: 400; stroke-dashoffset: 400; animation: drawLine 1s 0.8s forwards; }
+  .logo-bottom-anim { opacity: 0; animation: fadeIn 0.8s 1.2s forwards; }
+  
+  @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  @keyframes spinIn { 0% { transform: rotate(-45deg) scale(0.5); opacity: 0; } 100% { transform: rotate(0) scale(1); opacity: 1; } }
+  @keyframes fadeSlide { 0% { transform: translateX(20px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+  @keyframes drawLine { to { stroke-dashoffset: 0; } }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  .nav-logo-svg:hover .logo-at-anim { transform: scale(1.06) rotate(5deg); transition: transform 0.4s ease; }
+  .nav-logo-svg:hover .logo-box-anim { transform: scale(0.97); transition: transform 0.4s ease; }
+  /* ------------------------------------------- */
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.84rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: var(--red);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+    border-radius: 1px;
+  }
+  .nav-links a:hover { color: var(--red); background: var(--red-light); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--red) !important;
+    color: white !important;
+    padding: 9px 20px !important;
+    border-radius: 8px !important;
+  }
+  .nav-cta:hover { background: var(--red-dark) !important; }
+  .nav-cta::after { display: none !important; }
+
+  /* ===== HERO SLIDESHOW ===== */
+  .hero {
+    position: relative;
+    height: 88vh;
+    min-height: 540px;
+    overflow: hidden;
+    background: var(--text);
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    display: flex;
+    align-items: center;
+  }
+  .slide.active { opacity: 1; }
+  .slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.05);
+    transition: transform 8s ease;
+  }
+  .slide.active .slide-bg { transform: scale(1); }
+  .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(0,0,30,0.85) 20%, rgba(200,16,46,0.4) 100%);
+  }
+  .slide-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 80px;
+    color: white;
+  }
+  .slide-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .slide-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    line-height: 1.15;
+    font-weight: 900;
+    margin-bottom: 18px;
+    max-width: 650px;
+  }
+  .slide-content p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.9);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--red);
+    color: white;
+    padding: 13px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: all 0.25s;
+    border: 2px solid var(--red);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: var(--red-dark); border-color: var(--red-dark); transform: translateY(-2px); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.6);
+    color: white;
+    padding: 13px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: all 0.25s;
+    backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.08);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.14); }
+
+  /* Slide controls */
+  .slide-dots {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+  }
+  .dot.active { background: white; width: 28px; border-radius: 5px; }
+  .slide-arrows { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; pointer-events: none; }
+  .arrow-btn {
+    pointer-events: all;
+    width: 48px; height: 48px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .arrow-btn:hover { background: var(--red); border-color: var(--red); }
+
+  /* ===== STATS BAR ===== */
+  .stats-bar {
+    background: var(--red);
+    color: white;
+    padding: 0;
+  }
+  .stats-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 24px 20px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ===== SECTION BASE ===== */
+  section { padding: 90px 40px; }
+  .container { max-width: 1280px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red-light);
+    color: var(--red);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .section-title span { color: var(--red); }
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .divider {
+    width: 56px; height: 4px;
+    background: linear-gradient(90deg, var(--red), var(--blue));
+    border-radius: 2px;
+    margin: 16px auto 0;
+  }
+
+  /* ===== ANNOUNCEMENTS ===== */
+  #announcements { background: var(--blue-light); }
+  .announcements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .announce-card {
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--red);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .announce-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: var(--red-light);
+    border-radius: 0 0 0 80px;
+    opacity: 0.5;
+  }
+  .announce-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .announce-date {
+    font-size: 0.72rem;
+    color: var(--red);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .announce-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+  .badge-exam { background: #fff3cd; color: #856404; }
+  .badge-event { background: #d1e7dd; color: #0a5c36; }
+  .badge-holiday { background: #f8d7da; color: #842029; }
+  .badge-fee { background: #cff4fc; color: #055160; }
+  .announce-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .announce-text { font-size: 0.87rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ===== ABOUT ===== */
+  #about { background: white; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-main {
+    width: 100%;
+    height: 440px;
+    background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+  }
+  .about-img-main::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    border-radius: 20px;
+  }
+  .about-school-logo {
+    position: relative;
+    z-index: 2;
+    width: 150px; height: 150px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .logo-letter {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 4.5rem;
+    color: var(--red);
+    font-weight: 900;
+    line-height: 1;
+  }
+  .about-badge-float {
+    position: absolute;
+    background: var(--red);
+    color: white;
+    border-radius: 14px;
+    padding: 14px 20px;
+    box-shadow: 0 8px 28px rgba(200,16,46,0.35);
+    z-index: 3;
+  }
+  .about-badge-float.top-right { top: -20px; right: -20px; text-align: center; }
+  .about-badge-float.bottom-left { bottom: -20px; left: -20px; }
+  .float-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; line-height: 1; }
+  .float-label { font-size: 0.7rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.06em; }
+  .about-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .about-content h2 em {
+    font-style: italic;
+    color: var(--red);
+  }
+  .about-content p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .pillars-list { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .pillar-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--off-white);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .pillar-item:hover { border-color: var(--red); background: var(--red-light); }
+  .pillar-icon {
+    width: 40px; height: 40px;
+    background: var(--red);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .pillar-text h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .pillar-text p { font-size: 0.85rem; color: var(--text-muted); }
+
+  /* ===== PRINCIPAL MESSAGE ===== */
+  #principal { background: linear-gradient(135deg, var(--text) 0%, #2a1a3e 100%); color: white; }
+  .principal-inner {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .principal-photo {
+    text-align: center;
+  }
+  .photo-frame {
+    width: 220px; height: 220px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--red) 0%, var(--blue) 100%);
+    padding: 4px;
+    position: relative;
+  }
+  .photo-inner {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80');
+    background-size: cover;
+    background-position: center top;
+  }
+  .principal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+  }
+  .principal-designation {
+    font-size: 0.78rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .principal-msg .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--red);
+    line-height: 0.5;
+    margin-bottom: 24px;
+    display: block;
+  }
+  .principal-msg h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .principal-msg p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+  .principal-sig {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-top: 20px;
+  }
+
+  /* ===== ACADEMICS ===== */
+  #academics { background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%); color: white; }
+  .academics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .academic-card {
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .academic-card:hover {
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-4px);
+  }
+  .academic-icon { font-size: 2.5rem; margin-bottom: 16px; display: block; color: var(--gold); }
+  .academic-level { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+  .academic-grades { font-size: 0.8rem; color: rgba(255,255,255,0.8); margin-bottom: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  .academic-subjects { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
+
+  /* ===== FACULTY ===== */
+  #faculty { background: var(--off-white); }
+  .faculty-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .tab-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    background: white;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .tab-btn.active, .tab-btn:hover {
+    border-color: var(--red);
+    background: var(--red);
+    color: white;
+  }
+  .faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .faculty-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .faculty-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red), var(--blue));
+  }
+  .faculty-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+  .faculty-avatar {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    background: var(--border);
+  }
+  .av-red { background: linear-gradient(135deg, var(--red), #e74c3c); }
+  .av-blue { background: linear-gradient(135deg, var(--blue), #2980b9); }
+  .av-green { background: linear-gradient(135deg, #27ae60, #16a085); }
+  .av-purple { background: linear-gradient(135deg, #8e44ad, #3498db); }
+  .av-orange { background: linear-gradient(135deg, #e67e22, #f39c12); }
+  .av-teal { background: linear-gradient(135deg, #1abc9c, #3498db); }
+  .faculty-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .faculty-subject { font-size: 0.8rem; color: var(--red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .faculty-qual { font-size: 0.85rem; color: var(--text-muted); }
+  .faculty-head-badge {
+    position: absolute;
+    top: 16px; right: 12px;
+    background: var(--gold);
+    color: #5a3d00;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  /* ===== FEES ===== */
+  #fees { background: white; }
+  .fees-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .fee-card {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .fee-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .fee-header {
+    padding: 24px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .fee-header.primary { background: linear-gradient(135deg, var(--red), #e74c3c); }
+  .fee-header.secondary { background: linear-gradient(135deg, var(--blue), #2980b9); }
+  .fee-header.tertiary { background: linear-gradient(135deg, #27ae60, #1abc9c); }
+  .fee-header.quaternary { background: linear-gradient(135deg, #8e44ad, #3498db); }
+  .fee-header::after {
+    content: '\f153';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    bottom: -10px; right: 10px;
+    font-size: 6rem;
+    opacity: 0.1;
+  }
+  .fee-class { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.9; margin-bottom: 4px; }
+  .fee-level { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; }
+  .fee-body { padding: 20px 24px; }
+  .fee-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .fee-row:last-child { border-bottom: none; }
+  .fee-row-label { color: var(--text-muted); }
+  .fee-row-amount { font-weight: 700; color: var(--text); }
+  .fee-total {
+    margin-top: 16px;
+    padding: 16px;
+    background: var(--off-white);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .fee-total-label { font-weight: 700; color: var(--text); font-size: 0.95rem; }
+  .fee-total-amount { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--red); }
+
+  .fees-note {
+    margin-top: 36px;
+    padding: 20px 24px;
+    background: #fff3cd;
+    border-radius: 12px;
+    border-left: 4px solid var(--gold);
+    font-size: 0.9rem;
+    color: #664d03;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    line-height: 1.6;
+  }
+  .fees-note i { font-size: 1.4rem; color: var(--gold); margin-top: 2px; }
+
+  /* ===== DRESS CODE ===== */
+  #dress { background: var(--off-white); }
+  .dress-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .dress-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .dress-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .dress-visual {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .dress-visual.boys { background: linear-gradient(135deg, var(--blue), #3498db); }
+  .dress-visual.girls { background: linear-gradient(135deg, #e91e63, #f48fb1); }
+  .dress-visual.winter { background: linear-gradient(135deg, #607d8b, #90a4ae); }
+  .dress-visual.pe { background: linear-gradient(135deg, #4caf50, #81c784); }
+  .dress-visual.bag { background: linear-gradient(135deg, #ff9800, #ffcc80); }
+  .dress-visual.rules { background: linear-gradient(135deg, #795548, #a1887f); }
+  .dress-body { padding: 24px 22px; }
+  .dress-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+  .dress-list { list-style: none; }
+  .dress-list li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .dress-list li:last-child { border-bottom: none; }
+  .dress-list li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--red);
+    font-size: 0.8rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  /* ===== GALLERY ===== */
+  #gallery { background: white; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 16px;
+  }
+  .gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .gallery-item:nth-child(1), .gallery-item:nth-child(5) { grid-column: span 2; grid-row: span 2; }
+  .gallery-item:hover { transform: scale(0.98); box-shadow: var(--shadow-lg); }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-thumb {
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover .gallery-thumb { transform: scale(1.05); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: rgba(200,16,46,0.85);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    color: white;
+  }
+  .gallery-overlay i { font-size: 2rem; margin-bottom: 10px; }
+  .gallery-label { font-weight: 700; font-size: 1.1rem; text-align: center; }
+  .gallery-label small { display: block; font-weight: 400; font-size: 0.85rem; opacity: 0.9; margin-top: 4px; }
+
+  /* ===== CONTACT ===== */
+  #contact { background: var(--off-white); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+  }
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+  .contact-info > p { font-size: 1rem; color: var(--text-muted); margin-bottom: 36px; line-height: 1.7; }
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+  }
+  .contact-item:hover { transform: translateX(5px); border-color: var(--red); }
+  .contact-icon {
+    width: 48px; height: 48px;
+    background: var(--red-light);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--red);
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .contact-item h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 4px; }
+  .contact-item p { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+  .contact-form { background: white; border-radius: 20px; padding: 40px; box-shadow: var(--shadow-lg); }
+  .contact-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--off-white);
+    transition: all 0.2s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--red);
+    background: white;
+    box-shadow: 0 0 0 3px var(--red-light);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .btn-submit {
+    background: var(--red);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.25s;
+    letter-spacing: 0.03em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .btn-submit:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(200,16,46,0.2); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--text);
+    color: white;
+    padding: 70px 40px 0;
+  }
+  .footer-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand-col .footer-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: inline-flex;
+  }
+  .footer-brand-name { font-family: 'Arial Black', sans-serif; font-size: 1.3rem; color: var(--red); font-weight: 900; line-height: 1.2;}
+  .footer-brand-sub { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+  .footer-desc { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-top: 16px; }
+  .footer-social { display: flex; gap: 12px; margin-top: 24px; }
+  .social-btn {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.8);
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .social-btn:hover { background: var(--red); color: white; border-color: var(--red); transform: translateY(-3px); }
+  .footer-col h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 12px; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+  .footer-links a i { font-size: 0.8rem; color: var(--red); }
+  .footer-links a:hover { color: white; }
+  .footer-bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+  }
+  .footer-bottom strong { color: white; font-weight: 600; }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== MOBILE MENU ===== */
+  .hamburger { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text); cursor: pointer; }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .principal-inner { grid-template-columns: 1fr; text-align: center; gap: 36px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    section { padding: 60px 20px; }
+    .nav-inner { padding: 0 20px; }
+    
+    .hamburger { display: block; }
+    .nav-links { 
+      position: absolute; 
+      top: 85px; 
+      left: 0; 
+      right: 0; 
+      background: white; 
+      flex-direction: column; 
+      align-items: flex-start;
+      padding: 0; 
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .nav-links.active {
+      max-height: 500px;
+      padding: 20px;
+    }
+    .nav-links li { width: 100%; margin-bottom: 10px; }
+    .nav-links a { display: block; width: 100%; }
+
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+    .gallery-item:nth-child(1), .gallery-item:nth-child(5) { grid-column: span 1; grid-row: span 1; }
+    .slide-content { padding: 0 28px; }
+    .topbar { display: none; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  }
+
+  /* Back to top */
+  .back-top {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    width: 48px; height: 48px;
+    background: var(--red);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 20px rgba(200,16,46,0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    z-index: 999;
+  }
+  .back-top.show { opacity: 1; pointer-events: all; }
+  .back-top:hover { background: var(--red-dark); transform: translateY(-4px); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-ticker">
+    <span class="ticker-label"><i class="fas fa-bullhorn"></i> News</span>
+    <div class="ticker-wrap">
+      <span class="ticker-text">Annual Examinations start from 15th April 2026 &nbsp;|&nbsp; PTM scheduled for 5th April 2026 &nbsp;|&nbsp; Eid-ul-Fitr holidays: 28 March – 4 April 2026 &nbsp;|&nbsp; New admissions open for Session 2026-27 &nbsp;|&nbsp; Fee submission last date: 10th of every month</span>
+    </div>
+  </div>
+  <div>
+    <a href="tel:+92-241-XXXXXX"><i class="fas fa-phone-alt"></i> +92-241-XXXXXX</a>
+    <a href="mailto:info@smartschool.edu.pk"><i class="fas fa-envelope"></i> info@smartschool.edu.pk</a>
+  </div>
+</div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-brand" onclick="navTo('home',event)">
+      <svg class="nav-logo-svg" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" style="height: 75px; width: auto; flex-shrink: 0;">
+        <defs>
+          <clipPath id="clipLeft"><rect x="0" y="0" width="110" height="150"/></clipPath>
+          <clipPath id="clipRight"><rect x="110" y="0" width="300" height="150"/></clipPath>
+        </defs>
+        <g class="logo-box-anim">
+          <rect x="10" y="10" width="100" height="110" fill="#CC102A" rx="2"/>
+          <rect x="16" y="16" width="88" height="98" fill="none" stroke="#ffffff" stroke-width="2" rx="1"/>
+        </g>
+        <g class="logo-at-anim">
+          <text x="110" y="95" text-anchor="middle" font-family="'Arial Black', Arial, sans-serif" font-size="95" font-weight="900" fill="#ffffff" clip-path="url(#clipLeft)">@</text>
+          <text x="110" y="95" text-anchor="middle" font-family="'Arial Black', Arial, sans-serif" font-size="95" font-weight="900" fill="#CC102A" clip-path="url(#clipRight)">@</text>
+        </g>
+        <text x="180" y="50" font-family="'Great Vibes', cursive" font-size="48" fill="#CC102A" class="logo-text-1">The</text>
+        <text x="165" y="95" font-family="'Great Vibes', cursive" font-size="52" fill="#CC102A" class="logo-text-2">Smart</text>
+        <text x="155" y="135" font-family="'Great Vibes', cursive" font-size="52" fill="#CC102A" class="logo-text-3">School</text>
+        <line x1="10" y1="155" x2="390" y2="155" stroke="#CC102A" stroke-width="2.5" class="logo-line-anim"/>
+        <g class="logo-bottom-anim">
+          <text x="200" y="180" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600" fill="#CC102A">Tomorrow is our Destiny</text>
+          <text x="200" y="205" text-anchor="middle">
+            <tspan font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#000000">A Project of </tspan>
+            <tspan font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="18" fill="#004080">The City School</tspan>
+          </text>
+          <text x="200" y="235" text-anchor="middle" font-family="'Arial Black', Arial, sans-serif" font-size="24" font-weight="900" fill="#000000">Shahpur Chakar</text>
+        </g>
+      </svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about" onclick="navTo('about',event)">About</a></li>
+      <li><a href="#announcements" onclick="navTo('announcements',event)">News</a></li>
+      <li><a href="#academics" onclick="navTo('academics',event)">Academics</a></li>
+      <li><a href="#faculty" onclick="navTo('faculty',event)">Faculty</a></li>
+      <li><a href="#fees" onclick="navTo('fees',event)">Fees</a></li>
+      <li><a href="#dress" onclick="navTo('dress',event)">Uniform</a></li>
+      <li><a href="#gallery" onclick="navTo('gallery',event)">Gallery</a></li>
+      <li><a href="#contact" onclick="navTo('contact',event)" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="slide active">
+    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1920&q=80');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-tag"><i class="fas fa-graduation-cap"></i> Welcome to Excellence</span>
+      <h1>Where Tomorrow's Leaders Begin Their Journey</h1>
+      <p>The Smart School, Shahpur Chakar — a distinguished project of The City School — committed to nurturing brilliance since inception.</p>
+      <div class="hero-btns">
+        <a href="#about" onclick="navTo('about',event)" class="btn-primary"><i class="fas fa-search"></i> Explore School</a>
+        <a href="#contact" onclick="navTo('contact',event)" class="btn-outline"><i class="fas fa-clipboard-list"></i> Apply Now</a>
+      </div>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=80');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-tag"><i class="fas fa-book-open"></i> Academic Excellence</span>
+      <h1>Building Strong Foundations from Pre-School to Matric</h1>
+      <p>Quality education guided by The City School curriculum with experienced faculty dedicated to your child's success.</p>
+      <div class="hero-btns">
+        <a href="#academics" onclick="navTo('academics',event)" class="btn-primary"><i class="fas fa-book"></i> Our Programs</a>
+        <a href="#faculty" onclick="navTo('faculty',event)" class="btn-outline"><i class="fas fa-chalkboard-teacher"></i> Meet Faculty</a>
+      </div>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1920&q=80');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-tag"><i class="fas fa-star"></i> Our Mission</span>
+      <h1>Tomorrow is Our Destiny — Shaping the Future Today</h1>
+      <p>With modern facilities, value-based education and a nurturing environment, we inspire students to reach their highest potential.</p>
+      <div class="hero-btns">
+        <a href="#about" onclick="navTo('about',event)" class="btn-primary"><i class="fas fa-school"></i> Our Vision</a>
+        <a href="#fees" onclick="navTo('fees',event)" class="btn-outline"><i class="fas fa-coins"></i> Fee Structure</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-arrows">
+    <button class="arrow-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+    <button class="arrow-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+  </div>
+  <div class="slide-dots">
+    <button class="dot active" onclick="goToSlide(0)"></button>
+    <button class="dot" onclick="goToSlide(1)"></button>
+    <button class="dot" onclick="goToSlide(2)"></button>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <span class="stat-num">500+</span>
+      <span class="stat-label">Enrolled Students</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">35+</span>
+      <span class="stat-label">Expert Faculty</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">15+</span>
+      <span class="stat-label">Years of Excellence</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">98%</span>
+      <span class="stat-label">Pass Rate</span>
+    </div>
+  </div>
+</div>
+
+<section id="announcements">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag"><i class="fas fa-bell"></i> Latest Updates</span>
+      <h2 class="section-title">Announcements & <span>News</span></h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Stay informed with the latest news, events, and important updates from The Smart School.</p>
+    </div>
+    <div class="announcements-grid">
+      <div class="announce-card fade-in">
+        <div class="announce-date"><i class="far fa-calendar-alt"></i> March 27, 2026</div>
+        <span class="announce-badge badge-exam"><i class="fas fa-pen-alt"></i> Examinations</span>
+        <div class="announce-title">Annual Examinations — April 2026</div>
+        <p class="announce-text">Annual examinations for all classes (Pre-Nursery to Class X) will commence from April 15, 2026. Date sheets have been distributed.</p>
+      </div>
+      <div class="announce-card fade-in">
+        <div class="announce-date"><i class="far fa-calendar-alt"></i> March 25, 2026</div>
+        <span class="announce-badge badge-holiday"><i class="fas fa-moon"></i> Holiday Notice</span>
+        <div class="announce-title">Eid-ul-Fitr Holidays 2026</div>
+        <p class="announce-text">The school will remain closed from March 28 to April 4, 2026 for Eid-ul-Fitr. Classes will resume on Monday, April 6, 2026.</p>
+      </div>
+      <div class="announce-card fade-in">
+        <div class="announce-date"><i class="far fa-calendar-alt"></i> March 20, 2026</div>
+        <span class="announce-badge badge-event"><i class="fas fa-users"></i> Event</span>
+        <div class="announce-title">Parents-Teacher Meeting — April 5</div>
+        <p class="announce-text">PTM for all classes is scheduled for April 5, 2026 from 9:00 AM to 1:00 PM. Parents are strongly encouraged to attend.</p>
+      </div>
+      <div class="announce-card fade-in">
+        <div class="announce-date"><i class="far fa-calendar-alt"></i> March 15, 2026</div>
+        <span class="announce-badge badge-fee"><i class="fas fa-file-invoice-dollar"></i> Fee Notice</span>
+        <div class="announce-title">Fee Submission — April 2026</div>
+        <p class="announce-text">April 2026 fees must be submitted by April 10, 2026. Students with outstanding dues will not be allowed to sit in examinations.</p>
+      </div>
+      <div class="announce-card fade-in">
+        <div class="announce-date"><i class="far fa-calendar-alt"></i> March 10, 2026</div>
+        <span class="announce-badge badge-event"><i class="fas fa-user-plus"></i> Admissions</span>
+        <div class="announce-title">Admissions Open — Session 2026-27</div>
+        <p class="announce-text">New admissions for Session 2026-27 are now open for Pre-Nursery to Class IX. Limited seats available. Contact us for forms.</p>
+      </div>
+      <div class="announce-card fade-in">
+        <div class="announce-date"><i class="far fa-calendar-alt"></i> March 5, 2026</div>
+        <span class="announce-badge badge-exam"><i class="fas fa-trophy"></i> Result</span>
+        <div class="announce-title">Board Exam Results — Outstanding</div>
+        <p class="announce-text">Congratulations! Our Class X students achieved a 100% pass rate in the Board Exams. Three students secured top 10 positions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual fade-in">
+        <div class="about-img-main">
+          <div class="about-badge-float top-right">
+            <div class="float-num">A+</div>
+            <div class="float-label">Institution</div>
+          </div>
+          <div class="about-badge-float bottom-left">
+            <div class="float-num">City</div>
+            <div class="float-label">School Project</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content fade-in">
+        <span class="section-tag"><i class="fas fa-building"></i> About Us</span>
+        <h2>Nurturing Excellence in <em>Shahpur Chakar</em> Since Our Foundation</h2>
+        <p>The Smart School is a proud project of The City School network — one of Pakistan's most reputed educational institutions. Located in the heart of Shahpur Chakar, Sindh, we are dedicated to providing world-class education with a local understanding and global perspective.</p>
+        <p>Our motto, <strong>"Tomorrow is our Destiny,"</strong> reflects our unwavering commitment to preparing students not just for examinations, but for the challenges and opportunities of tomorrow's world.</p>
+        <ul class="pillars-list">
+          <li class="pillar-item">
+            <div class="pillar-icon"><i class="fas fa-book-reader"></i></div>
+            <div class="pillar-text">
+              <h4>Academic Excellence</h4>
+              <p>City School curriculum ensuring national and international standards.</p>
+            </div>
+          </li>
+          <li class="pillar-item">
+            <div class="pillar-icon"><i class="fas fa-seedling"></i></div>
+            <div class="pillar-text">
+              <h4>Character Building</h4>
+              <p>Islamic values, ethics and social responsibility at the core.</p>
+            </div>
+          </li>
+          <li class="pillar-item">
+            <div class="pillar-icon"><i class="fas fa-laptop-code"></i></div>
+            <div class="pillar-text">
+              <h4>Modern Learning</h4>
+              <p>Technology-enhanced classrooms and smart learning tools.</p>
+            </div>
+          </li>
+          <li class="pillar-item">
+            <div class="pillar-icon"><i class="fas fa-handshake"></i></div>
+            <div class="pillar-text">
+              <h4>Community & Family</h4>
+              <p>Strong parent-school partnership for holistic student growth.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="principal">
+  <div class="container">
+    <div class="section-header fade-in" style="color:white;">
+      <span class="section-tag" style="background:rgba(200,16,46,0.3);color:#ff8fa3;"><i class="fas fa-crown"></i> Leadership</span>
+      <h2 class="section-title" style="color:white;">Message from the <span style="color:var(--red);">Principal</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="principal-inner fade-in">
+      <div class="principal-photo">
+        <div class="photo-frame">
+          <div class="photo-inner"></div>
+        </div>
+        <div class="principal-name">Mr. Muhammad Asif</div>
+        <div class="principal-designation">Principal & Head of Institution</div>
+      </div>
+      <div class="principal-msg">
+        <span class="quote-mark">"</span>
+        <h3>Dear Students, Parents & Respected Guests</h3>
+        <p>Welcome to The Smart School, Shahpur Chakar — a beacon of learning, integrity and hope in our beloved Sindh. As the Principal, I am proud to lead an institution that stands on the foundations of academic excellence, moral development, and community service.</p>
+        <p>We believe every child is gifted with unique potential. Our role is to discover, nurture, and amplify that potential through quality teaching, a safe environment, and a curriculum that is both rigorous and inspiring. Together, we are building the leaders, doctors, engineers, and scholars of tomorrow.</p>
+        <p>Our partnership with The City School ensures our students have access to one of the finest educational frameworks in Pakistan. I invite every family to be an active part of our school community.</p>
+        <div class="principal-sig">Mr. Muhammad Asif</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="academics">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag" style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);"><i class="fas fa-graduation-cap"></i> Programs</span>
+      <h2 class="section-title" style="color:white;">Our Academic <span style="color:#ff8fa3;">Programs</span></h2>
+      <div class="divider"></div>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.7);">Comprehensive education from early years through to secondary level, aligned with City School & Federal Board curriculum.</p>
+    </div>
+    <div class="academics-grid">
+      <div class="academic-card fade-in">
+        <span class="academic-icon"><i class="fas fa-shapes"></i></span>
+        <div class="academic-level">Pre-Primary</div>
+        <div class="academic-grades">Pre-Nursery · Nursery · Prep</div>
+        <div class="academic-subjects">Play-based learning, Phonics, Numbers, Colours, Social Skills, Urdu & English Readiness</div>
+      </div>
+      <div class="academic-card fade-in">
+        <span class="academic-icon"><i class="fas fa-pencil-alt"></i></span>
+        <div class="academic-level">Primary</div>
+        <div class="academic-grades">Class I to Class V</div>
+        <div class="academic-subjects">English, Mathematics, Urdu, Science, Social Studies, Islamiyat, Computer Education</div>
+      </div>
+      <div class="academic-card fade-in">
+        <span class="academic-icon"><i class="fas fa-microscope"></i></span>
+        <div class="academic-level">Middle School</div>
+        <div class="academic-grades">Class VI to Class VIII</div>
+        <div class="academic-subjects">Sciences, Mathematics, English, Urdu, Pakistan Studies, Islamiyat, Computer, Drawing</div>
+      </div>
+      <div class="academic-card fade-in">
+        <span class="academic-icon"><i class="fas fa-user-graduate"></i></span>
+        <div class="academic-level">Secondary (Matric)</div>
+        <div class="academic-grades">Class IX to Class X</div>
+        <div class="academic-subjects">Science & Arts groups: Physics, Chemistry, Biology, Mathematics, English, Urdu, Pak Studies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faculty">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag"><i class="fas fa-users"></i> Our Team</span>
+      <h2 class="section-title">Dedicated <span>Faculty & Staff</span></h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Meet our experienced and passionate educators committed to your child's success.</p>
+    </div>
+    <div class="faculty-tabs">
+      <button class="tab-btn active" onclick="filterFaculty('all')">All Faculty</button>
+      <button class="tab-btn" onclick="filterFaculty('management')">Management</button>
+      <button class="tab-btn" onclick="filterFaculty('primary')">Primary</button>
+      <button class="tab-btn" onclick="filterFaculty('secondary')">Secondary</button>
+      <button class="tab-btn" onclick="filterFaculty('admin')">Admin Staff</button>
+    </div>
+    <div class="faculty-grid" id="facultyGrid">
+      <div class="faculty-card fade-in" data-dept="management">
+        <span class="faculty-head-badge"><i class="fas fa-star"></i> Head</span>
+        <div class="faculty-avatar av-red"><i class="fas fa-user-tie"></i></div>
+        <div class="faculty-name">Mr. Muhammad Asif</div>
+        <div class="faculty-subject">Principal</div>
+        <div class="faculty-qual">M.Ed | 20+ Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="management">
+        <span class="faculty-head-badge"><i class="fas fa-star"></i> VP</span>
+        <div class="faculty-avatar av-blue"><i class="fas fa-user-tie"></i></div>
+        <div class="faculty-name">Mrs. Saima Arain</div>
+        <div class="faculty-subject">Vice Principal</div>
+        <div class="faculty-qual">M.A English | 15 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="management">
+        <div class="faculty-avatar av-green"><i class="fas fa-user-tie"></i></div>
+        <div class="faculty-name">Mr. Rashid Khaskheli</div>
+        <div class="faculty-subject">Academic Coordinator</div>
+        <div class="faculty-qual">M.Sc Physics | 12 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="secondary">
+        <div class="faculty-avatar av-purple"><i class="fas fa-user"></i></div>
+        <div class="faculty-name">Mr. Farhan Memon</div>
+        <div class="faculty-subject">Mathematics</div>
+        <div class="faculty-qual">M.Sc Maths | 10 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="secondary">
+        <div class="faculty-avatar av-orange"><i class="fas fa-user"></i></div>
+        <div class="faculty-name">Mrs. Nadia Noonari</div>
+        <div class="faculty-subject">Physics & Chemistry</div>
+        <div class="faculty-qual">M.Sc Chemistry | 8 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="secondary">
+        <div class="faculty-avatar av-teal"><i class="fas fa-user"></i></div>
+        <div class="faculty-name">Mr. Aslam Jatoi</div>
+        <div class="faculty-subject">Biology</div>
+        <div class="faculty-qual">M.Sc Biology | 11 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="secondary">
+        <div class="faculty-avatar av-red"><i class="fas fa-user"></i></div>
+        <div class="faculty-name">Mrs. Shabana Rind</div>
+        <div class="faculty-subject">English Language</div>
+        <div class="faculty-qual">M.A English | 9 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="secondary">
+        <div class="faculty-avatar av-blue"><i class="fas fa-user"></i></div>
+        <div class="faculty-name">Mr. Zubair Malik</div>
+        <div class="faculty-subject">Urdu & Islamiyat</div>
+        <div class="faculty-qual">M.A Urdu | 14 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="secondary">
+        <div class="faculty-avatar av-green"><i class="fas fa-user"></i></div>
+        <div class="faculty-name">Mr. Hamid Soomro</div>
+        <div class="faculty-subject">Pakistan Studies</div>
+        <div class="faculty-qual">M.A History | 7 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="primary">
+        <span class="faculty-head-badge"><i class="fas fa-award"></i> Class IV-V</span>
+        <div class="faculty-avatar av-purple"><i class="fas fa-user"></i></div>
+        <div class="faculty-name">Mrs. Ruqaiya Abro</div>
+        <div class="faculty-subject">Class Teacher · Sr. Primary</div>
+        <div class="faculty-qual">B.Ed | 13 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="primary">
+        <div class="faculty-avatar av-orange"><i class="fas fa-user"></i></div>
+        <div class="faculty-name">Miss Mahnoor Khuhro</div>
+        <div class="faculty-subject">Class Teacher · Class III</div>
+        <div class="faculty-qual">B.Ed | 5 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="primary">
+        <div class="faculty-avatar av-teal"><i class="fas fa-user"></i></div>
+        <div class="faculty-name">Mrs. Fareeda Katpar</div>
+        <div class="faculty-subject">Class Teacher · Class II</div>
+        <div class="faculty-qual">B.Ed | 8 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="primary">
+        <div class="faculty-avatar av-red"><i class="fas fa-user"></i></div>
+        <div class="faculty-name">Miss Sadia Bhutto</div>
+        <div class="faculty-subject">Class Teacher · Class I</div>
+        <div class="faculty-qual">B.Ed | 6 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="primary">
+        <div class="faculty-avatar av-blue"><i class="fas fa-laptop"></i></div>
+        <div class="faculty-name">Mrs. Naseem Laghari</div>
+        <div class="faculty-subject">Computer Science</div>
+        <div class="faculty-qual">BCS | 10 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="admin">
+        <div class="faculty-avatar av-green"><i class="fas fa-calculator"></i></div>
+        <div class="faculty-name">Mr. Imran Kalhoro</div>
+        <div class="faculty-subject">Accounts Manager</div>
+        <div class="faculty-qual">B.Com | 8 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="admin">
+        <div class="faculty-avatar av-purple"><i class="fas fa-id-card"></i></div>
+        <div class="faculty-name">Mrs. Asma Shaikh</div>
+        <div class="faculty-subject">Admission Officer</div>
+        <div class="faculty-qual">BBA | 5 Years Experience</div>
+      </div>
+      <div class="faculty-card fade-in" data-dept="admin">
+        <div class="faculty-avatar av-orange"><i class="fas fa-network-wired"></i></div>
+        <div class="faculty-name">Mr. Muneer Hussain</div>
+        <div class="faculty-subject">IT Coordinator</div>
+        <div class="faculty-qual">BS IT | 6 Years Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fees">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag"><i class="fas fa-wallet"></i> Fee Structure</span>
+      <h2 class="section-title">Transparent <span>Fee Structure</span></h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Clear and affordable fee structure for Session 2025-26. One-time charges are separate from monthly fees.</p>
+    </div>
+    <div class="fees-grid">
+      <div class="fee-card fade-in">
+        <div class="fee-header primary">
+          <div class="fee-class">Pre-Primary</div>
+          <div class="fee-level">Pre-Nursery to Prep</div>
+        </div>
+        <div class="fee-body">
+          <div class="fee-row"><span class="fee-row-label">Monthly Tuition</span><span class="fee-row-amount">Rs. 2,500</span></div>
+          <div class="fee-row"><span class="fee-row-label">Admission Fee (once)</span><span class="fee-row-amount">Rs. 5,000</span></div>
+          <div class="fee-row"><span class="fee-row-label">Annual Fund (yearly)</span><span class="fee-row-amount">Rs. 2,000</span></div>
+          <div class="fee-row"><span class="fee-row-label">Books & Stationery</span><span class="fee-row-amount">Rs. 1,500</span></div>
+          <div class="fee-row"><span class="fee-row-label">Exam Fee (per term)</span><span class="fee-row-amount">Rs. 500</span></div>
+          <div class="fee-total">
+            <span class="fee-total-label">Monthly Total</span>
+            <span class="fee-total-amount">Rs. 2,500</span>
+          </div>
+        </div>
+      </div>
+      <div class="fee-card fade-in">
+        <div class="fee-header secondary">
+          <div class="fee-class">Primary</div>
+          <div class="fee-level">Class I to Class V</div>
+        </div>
+        <div class="fee-body">
+          <div class="fee-row"><span class="fee-row-label">Monthly Tuition</span><span class="fee-row-amount">Rs. 3,500</span></div>
+          <div class="fee-row"><span class="fee-row-label">Admission Fee (once)</span><span class="fee-row-amount">Rs. 7,000</span></div>
+          <div class="fee-row"><span class="fee-row-label">Annual Fund (yearly)</span><span class="fee-row-amount">Rs. 3,000</span></div>
+          <div class="fee-row"><span class="fee-row-label">Books & Stationery</span><span class="fee-row-amount">Rs. 2,500</span></div>
+          <div class="fee-row"><span class="fee-row-label">Exam Fee (per term)</span><span class="fee-row-amount">Rs. 700</span></div>
+          <div class="fee-total">
+            <span class="fee-total-label">Monthly Total</span>
+            <span class="fee-total-amount">Rs. 3,500</span>
+          </div>
+        </div>
+      </div>
+      <div class="fee-card fade-in">
+        <div class="fee-header tertiary">
+          <div class="fee-class">Middle School</div>
+          <div class="fee-level">Class VI to Class VIII</div>
+        </div>
+        <div class="fee-body">
+          <div class="fee-row"><span class="fee-row-label">Monthly Tuition</span><span class="fee-row-amount">Rs. 4,500</span></div>
+          <div class="fee-row"><span class="fee-row-label">Admission Fee (once)</span><span class="fee-row-amount">Rs. 8,000</span></div>
+          <div class="fee-row"><span class="fee-row-label">Annual Fund (yearly)</span><span class="fee-row-amount">Rs. 3,500</span></div>
+          <div class="fee-row"><span class="fee-row-label">Books & Stationery</span><span class="fee-row-amount">Rs. 3,000</span></div>
+          <div class="fee-row"><span class="fee-row-label">Exam Fee (per term)</span><span class="fee-row-amount">Rs. 1,000</span></div>
+          <div class="fee-total">
+            <span class="fee-total-label">Monthly Total</span>
+            <span class="fee-total-amount">Rs. 4,500</span>
+          </div>
+        </div>
+      </div>
+      <div class="fee-card fade-in">
+        <div class="fee-header quaternary">
+          <div class="fee-class">Secondary (Matric)</div>
+          <div class="fee-level">Class IX to Class X</div>
+        </div>
+        <div class="fee-body">
+          <div class="fee-row"><span class="fee-row-label">Monthly Tuition</span><span class="fee-row-amount">Rs. 6,000</span></div>
+          <div class="fee-row"><span class="fee-row-label">Admission Fee (once)</span><span class="fee-row-amount">Rs. 10,000</span></div>
+          <div class="fee-row"><span class="fee-row-label">Annual Fund (yearly)</span><span class="fee-row-amount">Rs. 5,000</span></div>
+          <div class="fee-row"><span class="fee-row-label">Books & Stationery</span><span class="fee-row-amount">Rs. 4,000</span></div>
+          <div class="fee-row"><span class="fee-row-label">Board Exam Fee</span><span class="fee-row-amount">Rs. 3,500</span></div>
+          <div class="fee-total">
+            <span class="fee-total-label">Monthly Total</span>
+            <span class="fee-total-amount">Rs. 6,000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fees-note fade-in">
+      <i class="fas fa-exclamation-triangle"></i>
+      <div>
+        <strong>Important Notes:</strong> Fee submission deadline is the 10th of every month. Late payment after 10th will incur a fine of Rs. 100/day. Siblings receive a 10% discount on the second child's fees. Scholarships available for outstanding students — contact the office for details. All fees are subject to annual revision.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dress">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag"><i class="fas fa-tshirt"></i> School Uniform</span>
+      <h2 class="section-title">Dress Code & <span>Uniform Kit</span></h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Uniform promotes discipline, equality and school pride. All students must adhere to the prescribed dress code.</p>
+    </div>
+    <div class="dress-grid">
+      <div class="dress-card fade-in">
+        <div class="dress-visual boys"><i class="fas fa-child"></i></div>
+        <div class="dress-body">
+          <div class="dress-title">Boys — Summer Uniform</div>
+          <ul class="dress-list">
+            <li>White half-sleeve shirt with school logo</li>
+            <li>Navy blue trousers (formal cut)</li>
+            <li>Black leather shoes (polished)</li>
+            <li>White socks (above ankle)</li>
+            <li>Navy blue school tie</li>
+            <li>School monogram belt</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dress-card fade-in">
+        <div class="dress-visual girls"><i class="fas fa-female"></i></div>
+        <div class="dress-body">
+          <div class="dress-title">Girls — Summer Uniform</div>
+          <ul class="dress-list">
+            <li>White shalwar kameez with school logo</li>
+            <li>White dupatta (compulsory)</li>
+            <li>White flat shoes or sandals</li>
+            <li>White socks</li>
+            <li>Hair neatly tied or covered</li>
+            <li>No jewellery allowed</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dress-card fade-in">
+        <div class="dress-visual winter"><i class="fas fa-snowflake"></i></div>
+        <div class="dress-body">
+          <div class="dress-title">Winter Uniform (Boys & Girls)</div>
+          <ul class="dress-list">
+            <li>Navy blue school sweater/pullover</li>
+            <li>School blazer (Class V & above)</li>
+            <li>White full-sleeve shirt underneath</li>
+            <li>Navy blue trousers / shalwar</li>
+            <li>Black shoes (polished)</li>
+            <li>School scarf optional in severe cold</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dress-card fade-in">
+        <div class="dress-visual pe"><i class="fas fa-running"></i></div>
+        <div class="dress-body">
+          <div class="dress-title">Physical Education (P.E.) Kit</div>
+          <ul class="dress-list">
+            <li>White school T-shirt with logo</li>
+            <li>Navy blue track trousers</li>
+            <li>White sports shoes (clean)</li>
+            <li>White sports socks</li>
+            <li>School sports bag</li>
+            <li>PE kit mandatory on PE days only</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dress-card fade-in">
+        <div class="dress-visual bag"><i class="fas fa-briefcase"></i></div>
+        <div class="dress-body">
+          <div class="dress-title">School Bag & Accessories</div>
+          <ul class="dress-list">
+            <li>Navy blue or black school bag</li>
+            <li>School diary (compulsory daily)</li>
+            <li>Water bottle (own, labelled)</li>
+            <li>Lunch box (no outside food)</li>
+            <li>Stationery in school pencil case</li>
+            <li>No fancy bags or trolley bags</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dress-card fade-in">
+        <div class="dress-visual rules"><i class="fas fa-clipboard-check"></i></div>
+        <div class="dress-body">
+          <div class="dress-title">Uniform Rules & Compliance</div>
+          <ul class="dress-list">
+            <li>Uniform compulsory every school day</li>
+            <li>Dirty/torn uniform will be noted</li>
+            <li>Dress code checked at school gate</li>
+            <li>3 violations = parent notification</li>
+            <li>No coloured hair, nail polish, or tattoos</li>
+            <li>Special dress on designated event days</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag"><i class="fas fa-camera-retro"></i> Photo Gallery</span>
+      <h2 class="section-title">School Life & <span>Moments</span></h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Glimpses of academic activities, events, sports, and unforgettable memories at The Smart School.</p>
+    </div>
+    <div class="gallery-grid fade-in">
+      <div class="gallery-item">
+        <div class="gallery-thumb" style="background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80')"></div>
+        <div class="gallery-overlay"><i class="fas fa-school"></i><div class="gallery-label">School Building<br><small>Our Campus</small></div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-thumb" style="background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=600&q=80')"></div>
+        <div class="gallery-overlay"><i class="fas fa-book-reader"></i><div class="gallery-label">Library & Reading<br><small>Knowledge Center</small></div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-thumb" style="background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80')"></div>
+        <div class="gallery-overlay"><i class="fas fa-flask"></i><div class="gallery-label">Science Lab<br><small>Experiments & Discovery</small></div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-thumb" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80')"></div>
+        <div class="gallery-overlay"><i class="fas fa-laptop-code"></i><div class="gallery-label">Computer Lab<br><small>Digital Learning</small></div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-thumb" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80')"></div>
+        <div class="gallery-overlay"><i class="fas fa-trophy"></i><div class="gallery-label">Prize Distribution<br><small>Annual Ceremony</small></div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-thumb" style="background-image: url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80')"></div>
+        <div class="gallery-overlay"><i class="fas fa-futbol"></i><div class="gallery-label">Sports Day<br><small>Athletics & Fun</small></div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-thumb" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80')"></div>
+        <div class="gallery-overlay"><i class="fas fa-theater-masks"></i><div class="gallery-label">Annual Function<br><small>Performances & Events</small></div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-thumb" style="background-image: url('https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80')"></div>
+        <div class="gallery-overlay"><i class="fas fa-leaf"></i><div class="gallery-label">Green Campus<br><small>Our Environment</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag"><i class="fas fa-headset"></i> Get in Touch</span>
+      <h2 class="section-title">Contact <span>Us</span></h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Have questions? We're here to help. Visit us or send a message and our team will respond promptly.</p>
+    </div>
+    <div class="contact-grid fade-in">
+      <div class="contact-info">
+        <h3>The Smart School</h3>
+        <p>A Project of The City School, dedicated to excellence in education for the community of Shahpur Chakar, Sindh.</p>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <h4>Address</h4>
+            <p>Near Main Road, Shahpur Chakar, District Sanghar, Sindh, Pakistan</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+          <div>
+            <h4>Phone</h4>
+            <p>+92-241-XXXXXX | +92-300-XXXXXXX</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <h4>Email</h4>
+            <p>info@smartschool.edu.pk</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-clock"></i></div>
+          <div>
+            <h4>Office Hours</h4>
+            <p>Mon–Sat: 7:30 AM – 2:00 PM</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-school"></i></div>
+          <div>
+            <h4>School Hours</h4>
+            <p>Mon–Sat: 8:00 AM – 1:30 PM</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Parent / Guardian Name</label>
+            <input type="text" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+92-XXX-XXXXXXX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Subject / Inquiry About</label>
+          <select>
+            <option>New Admission Inquiry</option>
+            <option>Fee Related Query</option>
+            <option>Academic Information</option>
+            <option>Complaint or Feedback</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Message</label>
+          <textarea placeholder="Write your message here..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="submitForm()"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <div class="footer-logo-wrap">
+        <svg style="height:56px;width:auto;flex-shrink:0;" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="fclipLeft"><rect x="0" y="0" width="110" height="150"/></clipPath>
+            <clipPath id="fclipRight"><rect x="110" y="0" width="300" height="150"/></clipPath>
+          </defs>
+          <g>
+            <rect x="10" y="10" width="100" height="110" fill="#CC102A" rx="2"/>
+            <rect x="16" y="16" width="88" height="98" fill="none" stroke="#ffffff" stroke-width="2" rx="1"/>
+          </g>
+          <g>
+            <text x="110" y="95" text-anchor="middle" font-family="'Arial Black', Arial, sans-serif" font-size="95" font-weight="900" fill="#ffffff" clip-path="url(#fclipLeft)">@</text>
+            <text x="110" y="95" text-anchor="middle" font-family="'Arial Black', Arial, sans-serif" font-size="95" font-weight="900" fill="#CC102A" clip-path="url(#fclipRight)">@</text>
+          </g>
+          <text x="180" y="50" font-family="'Great Vibes', cursive" font-size="48" fill="#CC102A">The</text>
+          <text x="165" y="95" font-family="'Great Vibes', cursive" font-size="52" fill="#CC102A">Smart</text>
+          <text x="155" y="135" font-family="'Great Vibes', cursive" font-size="52" fill="#CC102A">School</text>
+          <line x1="10" y1="155" x2="390" y2="155" stroke="#CC102A" stroke-width="2.5"/>
+          <text x="200" y="180" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600" fill="#CC102A">Tomorrow is our Destiny</text>
+          <text x="200" y="205" text-anchor="middle">
+            <tspan font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#ffffff">A Project of </tspan>
+            <tspan font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="18" fill="#7aadff">The City School</tspan>
+          </text>
+          <text x="200" y="235" text-anchor="middle" font-family="'Arial Black', Arial, sans-serif" font-size="24" font-weight="900" fill="#ffffff">Shahpur Chakar</text>
+        </svg>
+      </div>
+      <p class="footer-desc">Committed to academic excellence, moral development and holistic growth. Tomorrow is our Destiny — and we build it today, one student at a time.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="social-btn" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#home" onclick="navTo('home',event)"><i class="fas fa-angle-right"></i> Home</a></li>
+        <li><a href="#about" onclick="navTo('about',event)"><i class="fas fa-angle-right"></i> About School</a></li>
+        <li><a href="#academics" onclick="navTo('academics',event)"><i class="fas fa-angle-right"></i> Academics</a></li>
+        <li><a href="#faculty" onclick="navTo('faculty',event)"><i class="fas fa-angle-right"></i> Faculty</a></li>
+        <li><a href="#fees" onclick="navTo('fees',event)"><i class="fas fa-angle-right"></i> Fee Structure</a></li>
+        <li><a href="#dress" onclick="navTo('dress',event)"><i class="fas fa-angle-right"></i> Uniform</a></li>
+        <li><a href="#gallery" onclick="navTo('gallery',event)"><i class="fas fa-angle-right"></i> Gallery</a></li>
+        <li><a href="#contact" onclick="navTo('contact',event)"><i class="fas fa-angle-right"></i> Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Classes Offered</h4>
+      <ul class="footer-links">
+        <li><a href="#academics"><i class="fas fa-check"></i> Pre-Nursery</a></li>
+        <li><a href="#academics"><i class="fas fa-check"></i> Nursery</a></li>
+        <li><a href="#academics"><i class="fas fa-check"></i> Prep</a></li>
+        <li><a href="#academics"><i class="fas fa-check"></i> Class I – V</a></li>
+        <li><a href="#academics"><i class="fas fa-check"></i> Class VI – VIII</a></li>
+        <li><a href="#academics"><i class="fas fa-check"></i> Class IX – X</a></li>
+        <li><a href="#contact"><i class="fas fa-pen-nib"></i> New Admissions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <ul class="footer-links">
+        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Shahpur Chakar, Sindh</a></li>
+        <li><a href="tel:+92241XXXXXX"><i class="fas fa-phone-alt"></i> +92-241-XXXXXX</a></li>
+        <li><a href="mailto:info@smartschool.edu.pk"><i class="fas fa-envelope"></i> info@smartschool.edu.pk</a></li>
+        <li><a href="#"><i class="fas fa-clock"></i> Mon-Sat: 8:00 AM – 1:30 PM</a></li>
+        <li><a href="#"><i class="fas fa-calendar-check"></i> Fee: 10th of each month</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 <strong>The Smart School, Shahpur Chakar</strong> — A Project of The City School. All Rights Reserved.</span>
+    <span>Built with <i class="fas fa-heart" style="color:var(--red);"></i> for Excellence in Education</span>
+  </div>
+</footer>
+
+<a href="#home" class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></a>
+
+<script>
+  // ===== NAVIGATION WITH OFFSET =====
+  function navTo(id, e) {
+    if(e) e.preventDefault();
+    const el = document.getElementById(id);
+    if(!el) return;
+    const navH = document.getElementById('navbar').offsetHeight;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 8;
+    window.scrollTo({ top, behavior: 'smooth' });
+    
+    // Close mobile menu if open
+    const links = document.querySelector('.nav-links');
+    if(links.classList.contains('active')) {
+        links.classList.remove('active');
+    }
+  }
+
+  // ===== SLIDESHOW =====
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  let slideInterval;
+
+  function goToSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+  function changeSlide(dir) {
+    goToSlide(currentSlide + dir);
+    resetInterval();
+  }
+  function resetInterval() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(() => goToSlide(currentSlide + 1), 5500);
+  }
+  slideInterval = setInterval(() => goToSlide(currentSlide + 1), 5500);
+
+  // ===== FACULTY FILTER =====
+  function filterFaculty(dept) {
+    const cards = document.querySelectorAll('.faculty-card');
+    const btns = document.querySelectorAll('.tab-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    cards.forEach(card => {
+      if (dept === 'all' || card.dataset.dept === dept) {
+        card.style.display = 'block';
+        setTimeout(() => card.style.opacity = 1, 50);
+      } else {
+        card.style.opacity = 0;
+        setTimeout(() => card.style.display = 'none', 300);
+      }
+    });
+  }
+
+  // ===== SCROLL ANIMATIONS =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ===== BACK TO TOP =====
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('show', window.scrollY > 400);
+  });
+
+  // ===== MOBILE MENU (CLEAN CSS TOGGLE) =====
+  function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('active');
+  }
+
+  // ===== FORM =====
+  function submitForm() {
+    const btn = document.querySelector('.btn-submit');
+    btn.innerHTML = '<i class="fas fa-check-circle"></i> Message Sent!';
+    btn.style.background = '#27ae60';
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      btn.style.background = '';
+    }, 3000);
+  }
+
+  // ===== SMOOTH NAV SHADOW =====
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 10) {
+      nav.style.boxShadow = '0 4px 32px rgba(0,0,0,0.15)';
+    } else {
+      nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.10)';
+    }
+  });
+</script>
+</body>
+</html>
